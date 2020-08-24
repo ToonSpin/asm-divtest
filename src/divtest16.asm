@@ -1,28 +1,44 @@
 ; Assembly language performance tester
-; Does 10,000 divisions, 10,000 times
+; Does 9,000 divisions, 10,000 times
 ; Variables:
-; bx: Counter for keeping track of which of the 10,000 divisions is being done
-; cx: Counter for keeping track of which batch of 10,000 divisions is being done
+; rbx: Counter for keeping track of which of the 9,000 divisions is being done
+; rcx: Counter for keeping track of which batch of 10,000 divisions is being done
 ; si: Stores an arbitrary divisor
 
                 global  _start
 
                 section .text
 
-_start:         mov     cx, 0                   ; initialize outer loop counter
-                mov     si, 17                  ; remember 17 (arbitrary divisor)
+_start:         mov     rcx, 0                  ; initialize outer loop counter
+                mov     si, 3                   ; remember 3
 
-outer_loop:     inc     cx                      ; increment outer loop counter
-                cmp     cx, 10000               ; done if the counter equals 10000
+outer_loop:     inc     rcx                     ; increment outer loop counter
+                cmp     rcx, 10000              ; done if the counter equals 10000
                 je      done
 
-                mov     bx, 0                   ; initialize inner loop counter
+                mov     rbx, 0                  ; initialize inner loop counter
 
-inner_loop:     inc     bx                      ; increment inner loop counter
-                cmp     bx, 10000               ; done if inner loop counter equals 10000
+inner_loop:     inc     rbx                     ; increment inner loop counter
+                cmp     rbx, 1000               ; done if inner loop counter equals 1000
                 je      outer_loop
                 
-                mov     ax, bx                  ; set ax to the inner loop counter (dividend)
+                mov     ax, 0xFFFF              ; set ax to 2^16 - 1
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
+                xor     dx, dx                  ; zero dx
+                div     si                      ; divide by the divisor
                 xor     dx, dx                  ; zero dx
                 div     si                      ; divide by the divisor
 
