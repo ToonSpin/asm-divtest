@@ -22,24 +22,24 @@ inner_loop:     inc     rbx                     ; increment inner loop counter
                 cmp     rbx, 1000               ; done if inner loop counter equals 1000
                 je      outer_loop
                 
-                mov     ax, 0xFFFF              ; set ax to 2^16 - 1
-                xor     dx, dx                  ; zero dx
+                mov     eax, 0xFFFF             ; set eax to 2^16 - 1
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
-                xor     dx, dx                  ; zero dx
+                xor     edx, edx                ; zero edx
                 div     si                      ; divide by the divisor
 
                 jmp     inner_loop              ; go back to the inner loop
